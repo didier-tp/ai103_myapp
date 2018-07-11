@@ -30,6 +30,14 @@ public class CompteBean {
 	public void setComptes(List<Compte> comptes) {
 		this.comptes = comptes;
 	}
+
+	public Long getNumClient() {
+		return numClient;
+	}
+
+	public void setNumClient(Long numClient) {
+		this.numClient = numClient;
+	}
 	
 	
 
