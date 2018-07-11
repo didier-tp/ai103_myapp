@@ -31,4 +31,42 @@ public class ClientBean {
     	}
     	return suite;
     }
+
+	public Long getNumClient() {
+		return numClient;
+	}
+
+	public void setNumClient(Long numClient) {
+		this.numClient = numClient;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+    
+    
+    
+    
+    
+    
 }
