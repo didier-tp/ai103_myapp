@@ -9,6 +9,7 @@
 <ui:composition template="/templates/common.xhtml">
 	<ui:define name="title">comptes</ui:define>
 	<ui:define name="content">
+	  <h3>liste des comptes du client <h:outputText value="#{compteBean.numClient}" /></h3>
 	  <h:dataTable var="cpt" value="#{compteBean.comptes}" border="1">
 	      <h:column>
 	           <f:facet name="header"><f:verbatim>numero</f:verbatim></f:facet>
