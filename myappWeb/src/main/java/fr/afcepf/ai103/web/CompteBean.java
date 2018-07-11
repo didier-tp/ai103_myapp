@@ -16,11 +16,27 @@ public class CompteBean {
 	
 	private ServiceCompte serviceCompte = new ServiceCompte();
 	
+	//avec get/set
+	private Long numCptDeb = null;  //à selectionner dans liste déroulante dans virement.xhtml
+	private Long numCptCred = null; //à selectionner dans liste déroulante dans virement.xhtml
+	private Double montant = null; //à saisir dans virement.xhtml
+	
 	private List<Compte> comptes ; //à afficher sous forme de tableau (h:dataTable)
 	
 	//constructeur par défaut:
 	public CompteBean() {
 		comptes = serviceCompte.comptesDuClient(numClient);
+	}
+	
+	public String effectuerVirement() {
+		String suite = null;
+		//effectuer le virement
+		serviceCompte.transferer(montant, numCptDeb, numCptCred);
+		//recharger en mémoire les nouveaux soldes qui ont évolués et qui seront ré-afficher
+		comptes = serviceCompte.comptesDuClient(numClient);
+		//demander à naviguer vers comptes.xhtml pour réafficher les nouveaux soldes:
+		suite = "comptes" ; //.xhtml 
+		return suite;
 	}
 
 	public List<Compte> getComptes() {
@@ -37,6 +53,30 @@ public class CompteBean {
 
 	public void setNumClient(Long numClient) {
 		this.numClient = numClient;
+	}
+
+	public Long getNumCptDeb() {
+		return numCptDeb;
+	}
+
+	public void setNumCptDeb(Long numCptDeb) {
+		this.numCptDeb = numCptDeb;
+	}
+
+	public Long getNumCptCred() {
+		return numCptCred;
+	}
+
+	public void setNumCptCred(Long numCptCred) {
+		this.numCptCred = numCptCred;
+	}
+
+	public Double getMontant() {
+		return montant;
+	}
+
+	public void setMontant(Double montant) {
+		this.montant = montant;
 	}
 	
 	
