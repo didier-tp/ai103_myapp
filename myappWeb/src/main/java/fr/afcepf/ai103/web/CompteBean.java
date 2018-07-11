@@ -12,7 +12,7 @@ import fr.afcepf.ai103.service.ServiceCompte;
 @SessionScoped
 public class CompteBean {
 	
-	private Long numClient = 1L; //sera mélioré plus tard
+	private Long numClient = 1L; //sera amélioré plus tard
 	
 	private ServiceCompte serviceCompte = new ServiceCompte();
 	
