@@ -9,7 +9,7 @@
 <ui:composition template="/templates/common.xhtml">
 	<ui:define name="title">calcul de racine carrée</ui:define>
 	<ui:define name="content">
-	   <h:messages /> <!-- h:messages affiche des messages d'erreur si ils existent -->
+	   <h:messages class="erreur" /> <!-- h:messages affiche des messages d'erreur si ils existent -->
        <h:form>
        x: <h:inputText  value="#{calculBean.x}"></h:inputText> <br/>
        <h:commandButton value="calculer racine carrée" 
