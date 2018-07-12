@@ -21,10 +21,7 @@
 	</f:metadata>
 	  
 	  <h3>liste des comptes du client <h:outputText value="#{compteBean.numClient}" /></h3>
-	  
-	  ***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>
-	  ***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>
-	  
+		  
 	  <h:form>
 	  <h:dataTable var="cpt" value="#{compteBean.comptes}" border="1">
 	      <h:column>
@@ -32,7 +29,7 @@
 	           <h:commandLink action="#{compteBean.onSelectCompteAction}">
 	                <f:setPropertyActionListener value="#{cpt.numero}"
 								target="#{compteBean.selectedNumCompte}" />
-					 <f:ajax event="click" render="idTabOp" /> 
+					 <f:ajax event="click" render="idPanelGroupComportantTabOp" /> 
 	                <h:outputText value="#{cpt.numero}"/>
 	           </h:commandLink>
 	      </h:column>
@@ -48,23 +45,24 @@
 	  </h:form>
 	  
 	  <hr/>
-	  <h4>dernières opérations du compte sélectionné:</h4>
-	  <h:dataTable id="idTabOp"
-	       var="op" value="#{compteBean.operations}" border="1">
-	      <h:column>
-	           <f:facet name="header"><f:verbatim>date</f:verbatim></f:facet>
-	           <h:outputText value="#{op.date}"/>
-	      </h:column>
-	      <h:column>
-	           <f:facet name="header"><f:verbatim>montant</f:verbatim></f:facet>
-	           <h:outputText value="#{op.montant}"/>
-	      </h:column>
-	      <h:column>
-	           <f:facet name="header"><f:verbatim>label</f:verbatim></f:facet>
-	           <h:outputText value="#{op.label}"/>
-	      </h:column>
-	  </h:dataTable>
-	  
+	  <h:panelGroup id="idPanelGroupComportantTabOp" >
+		  <h4>dernières opérations du compte sélectionné:</h4>
+		  <h:dataTable rendered="#{not empty compteBean.operations}"
+		       var="op" value="#{compteBean.operations}" border="1">
+		      <h:column>
+		           <f:facet name="header"><f:verbatim>date</f:verbatim></f:facet>
+		           <h:outputText value="#{op.date}"/>
+		      </h:column>
+		      <h:column>
+		           <f:facet name="header"><f:verbatim>montant</f:verbatim></f:facet>
+		           <h:outputText value="#{op.montant}"/>
+		      </h:column>
+		      <h:column>
+		           <f:facet name="header"><f:verbatim>label</f:verbatim></f:facet>
+		           <h:outputText value="#{op.label}"/>
+		      </h:column>
+		  </h:dataTable>
+	  </h:panelGroup>
 	  <hr/>
 	  <a href="virement.jsf">nouveau virement</a>
 	</ui:define>
