@@ -1,11 +1,13 @@
 package fr.afcepf.ai103.web;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.ActionEvent;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ActionListener;
 import javax.faces.event.ComponentSystemEvent;
 
 import fr.afcepf.ai103.data.Compte;
@@ -30,9 +32,11 @@ public class CompteBean {
 	
 	private Long selectedNumCompte = null; //+get/set
 	
-	public void onSelectCompte(ActionEvent event) {
-		System.out.println("dans onSelectCompte() , selectedNumCompte= " + selectedNumCompte);
+	
+	public String onSelectCompteAction() {
+		System.out.println("dans onSelectCompteAction() , selectedNumCompte= " + selectedNumCompte);
 		operations = serviceCompte.operationsDuCompte(selectedNumCompte);
+		return null;
 	}
 	
 	//constructeur par défaut:
@@ -111,6 +115,8 @@ public class CompteBean {
 	public void setSelectedNumCompte(Long selectedNumCompte) {
 		this.selectedNumCompte = selectedNumCompte;
 	}
+
+	
 	
 	
 

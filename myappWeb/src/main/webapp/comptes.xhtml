@@ -29,11 +29,10 @@
 	  <h:dataTable var="cpt" value="#{compteBean.comptes}" border="1">
 	      <h:column>
 	           <f:facet name="header"><f:verbatim>numero</f:verbatim></f:facet>
-	           <h:commandLink  actionListener="#{compteBean.onSelectCompte}"
-	                 immediate="false" >
-	                 <f:ajax event="click" render="idTabOp" />
+	           <h:commandLink action="#{compteBean.onSelectCompteAction}">
 	                <f:setPropertyActionListener value="#{cpt.numero}"
 								target="#{compteBean.selectedNumCompte}" />
+					 <f:ajax event="click" render="idTabOp" /> 
 	                <h:outputText value="#{cpt.numero}"/>
 	           </h:commandLink>
 	      </h:column>
