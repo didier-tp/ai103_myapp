@@ -1,11 +1,13 @@
 package fr.afcepf.ai103.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import fr.afcepf.ai103.data.Compte;
+import fr.afcepf.ai103.data.Operation;
 
 public class ServiceCompte {
 	 private Map<Long,Compte> mapComptes = new HashMap<Long,Compte>();//simulation en mémoire
@@ -33,6 +35,19 @@ public class ServiceCompte {
     	 listeComptes.add(mapComptes.get(123456L));
     	 listeComptes.add(mapComptes.get(97855245L));
     	 return listeComptes;
+     }
+     
+     public List<Operation> operationsDuCompte(Long numCompte){
+    	 List<Operation> listeOperations = new ArrayList<Operation>();
+    	 //simulation de valeurs récupérées en base:
+    	 if((numCompte % 2) == 0) {
+	    	 listeOperations.add(new Operation(1L,new Date(),-30.0, "achat livres"));
+	    	 listeOperations.add(new Operation(2L,new Date(),-10.0, "achat dvd"));
+    	 }else {
+    		 listeOperations.add(new Operation(3L,new Date(),-35.0, "achat vetement"));
+	    	 listeOperations.add(new Operation(4L,new Date(),-18.0, "achat crème solaire"));
+    	 }
+    	 return listeOperations;
      }
      
      
