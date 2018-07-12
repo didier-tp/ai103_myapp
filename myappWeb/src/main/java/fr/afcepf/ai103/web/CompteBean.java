@@ -7,6 +7,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
 
 import fr.afcepf.ai103.data.Compte;
+import fr.afcepf.ai103.data.Operation;
 import fr.afcepf.ai103.service.ServiceCompte;
 
 @ManagedBean
@@ -23,6 +24,7 @@ public class CompteBean {
 	private Double montant = null; //à saisir dans virement.xhtml
 	
 	private List<Compte> comptes ; //à afficher sous forme de tableau (h:dataTable)
+	private List<Operation> operations ; //à afficher sous forme de tableau (h:dataTable)
 	
 	//constructeur par défaut:
 	public CompteBean() {
@@ -82,6 +84,14 @@ public class CompteBean {
 
 	public void setMontant(Double montant) {
 		this.montant = montant;
+	}
+
+	public List<Operation> getOperations() {
+		return operations;
+	}
+
+	public void setOperations(List<Operation> operations) {
+		this.operations = operations;
 	}
 	
 	
