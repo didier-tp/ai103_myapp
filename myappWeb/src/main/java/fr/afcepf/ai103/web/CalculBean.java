@@ -1,5 +1,7 @@
 package fr.afcepf.ai103.web;
 
+import java.util.Date;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -9,6 +11,8 @@ import javax.faces.bean.RequestScoped;
 public class CalculBean {
     private Double x; //à saisir
     private Double res; //à afficher
+    
+    private Date date; //avec get/Set pour essai p:calendar
     
     public String calculerRacine() {
     	this.res = Math.sqrt(this.x);
@@ -28,5 +32,14 @@ public class CalculBean {
 	public void setRes(Double res) {
 		this.res = res;
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
     
+	
 }
