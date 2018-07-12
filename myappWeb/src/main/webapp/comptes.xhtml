@@ -21,11 +21,17 @@
 	</f:metadata>
 	  
 	  <h3>liste des comptes du client <h:outputText value="#{compteBean.numClient}" /></h3>
+	  
+	  ***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>
+	  ***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>***<br/>
+	  
 	  <h:form>
 	  <h:dataTable var="cpt" value="#{compteBean.comptes}" border="1">
 	      <h:column>
 	           <f:facet name="header"><f:verbatim>numero</f:verbatim></f:facet>
-	           <h:commandLink  actionListener="#{compteBean.onSelectCompte}" >
+	           <h:commandLink  actionListener="#{compteBean.onSelectCompte}"
+	                 immediate="false" >
+	                 <f:ajax event="click" render="idTabOp" />
 	                <f:setPropertyActionListener value="#{cpt.numero}"
 								target="#{compteBean.selectedNumCompte}" />
 	                <h:outputText value="#{cpt.numero}"/>

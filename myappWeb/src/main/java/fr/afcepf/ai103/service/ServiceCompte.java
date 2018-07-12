@@ -40,7 +40,7 @@ public class ServiceCompte {
      public List<Operation> operationsDuCompte(Long numCompte){
     	 List<Operation> listeOperations = new ArrayList<Operation>();
     	 //simulation de valeurs récupérées en base:
-    	 if((numCompte % 2) == 0) {
+    	 if(numCompte != null && (numCompte % 2) == 0) {
 	    	 listeOperations.add(new Operation(1L,new Date(),-30.0, "achat livres"));
 	    	 listeOperations.add(new Operation(2L,new Date(),-10.0, "achat dvd"));
     	 }else {

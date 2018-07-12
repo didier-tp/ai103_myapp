@@ -31,6 +31,7 @@ public class CompteBean {
 	private Long selectedNumCompte = null; //+get/set
 	
 	public void onSelectCompte(ActionEvent event) {
+		System.out.println("dans onSelectCompte() , selectedNumCompte= " + selectedNumCompte);
 		operations = serviceCompte.operationsDuCompte(selectedNumCompte);
 	}
 	
