@@ -1,5 +1,6 @@
 package fr.afcepf.ai103.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -28,6 +29,7 @@ public class CompteBean {
 	
 	//constructeur par défaut:
 	public CompteBean() {
+		operations = new ArrayList<Operation>();
 	}
 	
 	//méthode appelée après que numClient soit automatiquement mis à jour par JSF
