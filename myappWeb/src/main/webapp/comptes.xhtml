@@ -35,6 +35,25 @@
 	           <h:outputText value="#{cpt.solde}"/>
 	      </h:column>
 	  </h:dataTable>
+	  
+	  <hr/>
+	  <h4>dernières opérations du compte sélectionné:</h4>
+	  <h:dataTable id="idTabOp"
+	       var="op" value="#{compteBean.operations}" border="1">
+	      <h:column>
+	           <f:facet name="header"><f:verbatim>date</f:verbatim></f:facet>
+	           <h:outputText value="#{op.date}"/>
+	      </h:column>
+	      <h:column>
+	           <f:facet name="header"><f:verbatim>montant</f:verbatim></f:facet>
+	           <h:outputText value="#{op.montant}"/>
+	      </h:column>
+	      <h:column>
+	           <f:facet name="header"><f:verbatim>label</f:verbatim></f:facet>
+	           <h:outputText value="#{op.label}"/>
+	      </h:column>
+	  </h:dataTable>
+	  
 	  <hr/>
 	  <a href="virement.jsf">nouveau virement</a>
 	</ui:define>
