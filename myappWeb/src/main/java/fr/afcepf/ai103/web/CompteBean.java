@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
 
 import fr.afcepf.ai103.data.Compte;
@@ -26,6 +27,12 @@ public class CompteBean {
 	
 	private List<Compte> comptes ; //à afficher sous forme de tableau (h:dataTable)
 	private List<Operation> operations ; //à afficher sous forme de tableau (h:dataTable)
+	
+	private Long selectedNumCompte = null; //+get/set
+	
+	public void onSelectCompte(ActionEvent event) {
+		operations = serviceCompte.operationsDuCompte(selectedNumCompte);
+	}
 	
 	//constructeur par défaut:
 	public CompteBean() {
@@ -94,6 +101,14 @@ public class CompteBean {
 
 	public void setOperations(List<Operation> operations) {
 		this.operations = operations;
+	}
+
+	public Long getSelectedNumCompte() {
+		return selectedNumCompte;
+	}
+
+	public void setSelectedNumCompte(Long selectedNumCompte) {
+		this.selectedNumCompte = selectedNumCompte;
 	}
 	
 	
