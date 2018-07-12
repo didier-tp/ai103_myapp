@@ -16,9 +16,14 @@
 	                                    itemValue="#{cpt.numero}" 
 	                                    itemLabel="#{cpt.numero} - #{cpt.label} - #{cpt.solde}"/>
 	              </h:selectOneListbox> <br/>
-	  numCptCred: ...
-	  montant : .....
-	     .... commandButton effectuerVirement
+	  numCptCred: <h:selectOneListbox size="1" value="#{compteBean.numCptCred}">
+	                    <f:selectItems var="cpt" value="#{compteBean.comptes}" 
+	                                    itemValue="#{cpt.numero}" 
+	                                    itemLabel="#{cpt.numero} - #{cpt.label} - #{cpt.solde}"/>
+	              </h:selectOneListbox> <br/>
+	  montant : <h:inputText value="#{compteBean.montant}"/> <br/>
+	   <h:commandButton value="effectuer virement" 
+                        action="#{compteBean.effectuerVirement}" />
 	  </h:form>
 	</ui:define>
 </ui:composition>

@@ -24,7 +24,7 @@ public class ServiceCompte {
     	 Compte cptDeb = mapComptes.get(numCptDeb);
     	 cptDeb.setSolde(cptDeb.getSolde() - montant);
     	 Compte cptCred = mapComptes.get(numCptCred);
-    	 cptDeb.setSolde(cptCred.getSolde() + montant);
+    	 cptCred.setSolde(cptCred.getSolde() + montant);
      }
 	
      public List<Compte> comptesDuClient(Long numClient){
