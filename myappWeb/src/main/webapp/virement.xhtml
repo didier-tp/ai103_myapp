@@ -10,20 +10,40 @@
 	<ui:define name="title">virement</ui:define>
 	<ui:define name="content">
 	  <h3>virement </h3>
-	  <h:form>
-	  numCptDeb : <h:selectOneListbox size="1" value="#{compteBean.numCptDeb}">
+	  <h:form id="f">
+	  <!-- alignement via JSF (h:panelGrid)
+	       pas très responsive , moins bien que bootstrap-css -->
+	    <h:panelGrid columns="3"> 
+	    
+	  <h:outputLabel for="idNumCptDeb">numCptDeb :</h:outputLabel>
+	  <h:selectOneListbox id="idNumCptDeb" size="1" value="#{compteBean.numCptDeb}">
 	                    <f:selectItems var="cpt" value="#{compteBean.comptes}" 
 	                                    itemValue="#{cpt.numero}" 
 	                                    itemLabel="#{cpt.numero} - #{cpt.label} - #{cpt.solde}"/>
-	              </h:selectOneListbox> <br/>
-	  numCptCred: <h:selectOneListbox size="1" value="#{compteBean.numCptCred}">
+	  </h:selectOneListbox> 
+	  <h:message for="idNumCptDeb" class="erreur" />
+	  
+	              
+	              
+	  <h:outputLabel for="idNumCptCred">numCptCred :</h:outputLabel> 
+	  <h:selectOneListbox id="idNumCptCred" size="1" value="#{compteBean.numCptCred}">
 	                    <f:selectItems var="cpt" value="#{compteBean.comptes}" 
 	                                    itemValue="#{cpt.numero}" 
 	                                    itemLabel="#{cpt.numero} - #{cpt.label} - #{cpt.solde}"/>
-	              </h:selectOneListbox> <br/>
-	  montant : <h:inputText value="#{compteBean.montant}"/> <br/>
-	   <h:commandButton value="effectuer virement" 
+	  </h:selectOneListbox>
+	  <h:message for="idNumCptCred" class="erreur" />           
+	              
+	  <h:outputLabel for="idMontant">montant :</h:outputLabel> 
+	  <h:inputText  id="idMontant" required="true" label="montant" value="#{compteBean.montant}"/> 
+      <h:message for="idMontant" class="erreur" />
+	  
+	  
+	  <h:outputLabel for="idBtnVirement"></h:outputLabel> 
+	  <h:commandButton id="idBtnVirement" value="effectuer virement" 
                         action="#{compteBean.effectuerVirement}" />
+      <h:outputLabel for="idBtnVirement"></h:outputLabel>
+      
+	  </h:panelGrid>
 	  </h:form>
 	</ui:define>
 </ui:composition>
