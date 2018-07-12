@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 
 import fr.afcepf.ai103.data.Compte;
 import fr.afcepf.ai103.service.ServiceCompte;
@@ -12,7 +13,7 @@ import fr.afcepf.ai103.service.ServiceCompte;
 @SessionScoped
 public class CompteBean {
 	
-	private Long numClient = 1L; //sera amélioré plus tard
+	private Long numClient = null;
 	
 	private ServiceCompte serviceCompte = new ServiceCompte();
 	
@@ -25,6 +26,10 @@ public class CompteBean {
 	
 	//constructeur par défaut:
 	public CompteBean() {
+	}
+	
+	//méthode appelée après que numClient soit automatiquement mis à jour par JSF
+	public void initComptes(ComponentSystemEvent event){
 		comptes = serviceCompte.comptesDuClient(numClient);
 	}
 	

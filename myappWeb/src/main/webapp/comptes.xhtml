@@ -9,6 +9,17 @@
 <ui:composition template="/templates/common.xhtml">
 	<ui:define name="title">comptes</ui:define>
 	<ui:define name="content">
+	  
+	  <f:metadata>
+	     <!-- pour recopier dans  #{compteBean.numClient} la valeur du paramètre numClient
+	           passé en fin d'URL en mode get : href="comptes.jsf?numClient=2" -->
+		<f:viewParam name="numClient" value="#{compteBean.numClient}"/>
+	     <!-- demander à appeler la méthode d'initialisation initComptes()
+	          après la mise à jour de  #{compteBean.numClient}
+	          et avant l'affichage de la page -->	
+		<f:event type="preRenderView" listener="#{compteBean.initComptes}"/>
+	</f:metadata>
+	  
 	  <h3>liste des comptes du client <h:outputText value="#{compteBean.numClient}" /></h3>
 	  <h:dataTable var="cpt" value="#{compteBean.comptes}" border="1">
 	      <h:column>
