@@ -12,11 +12,28 @@
 	   <h:messages class="erreur" /> <!-- h:messages affiche des messages d'erreur 
 	                                      en cas de mauvaises saisies -->
 	          
-       <h:form>
-       numero client: <h:inputText  value="#{clientBean.numClient}"></h:inputText> <br/>
-       password: <h:inputText  value="#{clientBean.password}"></h:inputText> <br/>
-       <h:commandButton value="login" 
-                        action="#{clientBean.verifLogin}" />
+       <h:form class="form-horizontal">
+	       <div class="form-group row">
+		       <label for="idNumClient" class="control-label col-sm-4">numero client:</label> 
+		       <div class="col-sm-8">
+			       <h:inputText  id="idNumClient" class="form-control" 
+			                     value="#{clientBean.numClient}"/>
+		       </div>
+          </div>
+          
+          <div class="form-group row">
+             <label for="idPassword" class="control-label col-sm-4">password:</label> 
+             <div class="col-sm-8">
+               <h:inputText    id="idPassword" class="form-control"  
+                                value="#{clientBean.password}" />
+             </div>
+          </div>
+        <div class="form-group row"> 
+             <div class="offset-sm-4 col-sm-8">              
+              <h:commandButton  value="login" 
+                              action="#{clientBean.verifLogin}" />
+             </div>
+         </div>
       </h:form>
       <h:outputText class="erreur" value="#{clientBean.message }"></h:outputText>
 	</ui:define>
