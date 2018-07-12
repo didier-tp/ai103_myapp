@@ -9,15 +9,14 @@
 <ui:composition template="/templates/common.xhtml">
 	<ui:define name="title">login</ui:define>
 	<ui:define name="content">
-	   <h:messages class="erreur" /> <!-- h:messages affiche des messages d'erreur 
-	                                      en cas de mauvaises saisies -->
 	          
        <h:form class="form-horizontal">
 	       <div class="form-group row">
 		       <label for="idNumClient" class="control-label col-sm-4">numero client:</label> 
 		       <div class="col-sm-8">
-			       <h:inputText  id="idNumClient" class="form-control" 
+			       <h:inputText  id="idNumClient" class="form-control" label="numClient"
 			                     value="#{clientBean.numClient}"/>
+			       <h:message for="idNumClient" class="erreur" />
 		       </div>
           </div>
           
