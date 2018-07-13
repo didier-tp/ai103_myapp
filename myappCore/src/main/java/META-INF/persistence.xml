@@ -15,10 +15,14 @@
          <property name="javax.persistence.jdbc.user" value="sa"/>
          <property name="javax.persistence.jdbc.password" value=""/>
 		 <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/bank_db"/>
+		 
+		 <!-- un dialecte par type de base de données pour spécialiser le SQL à générer -->
+		<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+		
 		 <!-- 
              <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
              <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/bank_db" />         
-             <property name="javax.persistence.jdbc.password" value="" />        
+             <property name="javax.persistence.jdbc.password" value="root" />        
              <property name="javax.persistence.jdbc.user" value="root" /> 
              <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 		-->
@@ -32,8 +36,7 @@
 		     est automatiquement déclenché au démarrage de l'application 
 		     pour des insert into / jeux de données pour les tests -->
 		
-		<!-- un dialecte par type de base de données pour spécialiser le SQL à générer -->
-		<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+		
 		
 		<property name="hibernate.show_sql" value="true"/>
      </properties>
