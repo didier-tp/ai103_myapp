@@ -1,13 +1,33 @@
 package fr.afcepf.ai103.data;
 
+import javax.persistence.Column;
+/* javax.persistence = package de JPA */
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity //entité persistante prise en charge par JPA/Hibernate
+//@Table(name="Client")
 public class Client {
+	
+	@Id //identifiant (primary key)
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //IDENTITY convient le mieux
+	                                                  //pour les bases de données récentes
+	//@Column(name="numClient")
 	private Long numClient;
+	
 	private String nom; 
 	private String prenom; 
 	private String email; 
 	private String adresse; 
+	
+	@Column(length=15) //VARCHAR(15)
 	private String telephone;
+	
     private String password;
+    
+    
     
     //+get/set , +toString() , + default constructor
     
