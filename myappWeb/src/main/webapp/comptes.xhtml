@@ -8,9 +8,8 @@
 
 <ui:composition template="/templates/common.xhtml">
 	<ui:define name="title">comptes</ui:define>
-	<ui:define name="content">
-	  
-	  <f:metadata>
+	<ui:define name="pageMetaData">
+	    <f:metadata>
 	     <!-- pour recopier dans  #{compteBean.numClient} la valeur du paramètre numClient
 	           passé en fin d'URL en mode get : href="comptes.jsf?numClient=2" -->
 		<f:viewParam name="numClient" value="#{compteBean.numClient}"/>
@@ -19,6 +18,8 @@
 	          et avant l'affichage de la page -->	
 		<f:event type="preRenderView" listener="#{compteBean.initComptes}"/>
 	</f:metadata>
+	</ui:define>
+	<ui:define name="content">
 	  
 	  <h3>liste des comptes du client <h:outputText value="#{compteBean.numClient}" /></h3>
 		  
