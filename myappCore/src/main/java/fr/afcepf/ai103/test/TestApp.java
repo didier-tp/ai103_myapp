@@ -14,4 +14,12 @@ public class TestApp {
 		//...
 		System.exit(0);//pour forcer l'arrêt (pour compenser entityManager.close() )
 	}
+	
+	/* NB: un double click sur h2...jar (situé dans 
+	C:\Users\formation\.m2\repository\com\h2database\h2\1.4.197)
+	on peut lancer une console préfini de H2 permettant de visualiser le contenu des tables
+	Attention :
+	    * URL = jdbc:h2:~/bank_db (plutot que jdbc:h2:~/test)
+	    * bien se déconnecter pour ne pas bloquer d'autres programmes (ex: appli java)
+	*/
 }
