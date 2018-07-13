@@ -11,7 +11,7 @@ public class TestApp {
 		for(Client c :daoClient.rechercherClients()) {
 			System.out.println(c.toString());
 		}
-		//..
+		//...
+		System.exit(0);//pour forcer l'arrêt (pour compenser entityManager.close() )
 	}
-
 }
