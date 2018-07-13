@@ -28,6 +28,7 @@
 	    <groupId>com.h2database</groupId>
 	    <artifactId>h2</artifactId>
 	    <version>1.4.197</version>
+	    <!-- scope=test est ok seulement avec un test unitaire JUnit -->
 	</dependency>
 	
   </dependencies>
