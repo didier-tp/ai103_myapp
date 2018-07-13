@@ -3,6 +3,8 @@ package fr.afcepf.ai103.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import fr.afcepf.ai103.data.Client;
 
@@ -11,7 +13,15 @@ public class DaoClientJpa implements IDaoClient {
 	private EntityManager entityManager;
 	
 	private void initEntityManagerSansEjb() {
-		//...
+		//1. créer l'objet technique EntityManagerFactory de JPA 
+		//en analysant le fichier META-INF/persistence.xml
+		EntityManagerFactory entityManagerFactory =
+					Persistence.createEntityManagerFactory("myappCore");
+		//myappCore est un nom logique d'une partie de la 
+		//configuration de META-INF/persistence.xml
+				
+		//2. créer le EntityManager via la factory
+		this.entityManager = entityManagerFactory.createEntityManager();
 	}
 	
 	public DaoClientJpa(){

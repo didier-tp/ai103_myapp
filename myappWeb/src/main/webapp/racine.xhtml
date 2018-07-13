@@ -17,9 +17,9 @@
 	  <p:tab title="racine carrée">
 	   <h:messages class="erreur" /> <!-- h:messages affiche des messages d'erreur si ils existent -->
        
-       x: <h:inputText  value="#{calculBean.x}"></h:inputText> <br/>
+       x: <h:inputText  value="#{calculBean.x}" required="true"></h:inputText> <br/>
        <h:commandButton value="calculer racine carrée" 
-                        action="#{calculBean.calculerRacine}" />
+                        action="#{calculBean.calculerRacine}" /><br/>
     
        res: <h:outputText value="#{calculBean.res }"></h:outputText>
       </p:tab>
