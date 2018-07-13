@@ -11,6 +11,10 @@ public class TestApp {
 		for(Client c :daoClient.rechercherClients()) {
 			System.out.println(c.toString());
 		}
+		Client cc = new Client();
+		cc.setNom("toto");
+		daoClient.insererNouveauClient(cc);
+		System.out.println("nouveau numClient" + cc.getNumClient());
 		//...
 		System.exit(0);//pour forcer l'arrêt (pour compenser entityManager.close() )
 	}
