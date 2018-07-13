@@ -28,36 +28,53 @@ public class DaoClientJpa implements IDaoClient {
 		initEntityManagerSansEjb();
 	}
 
-	@Override
 	public Client insererNouveauClient(Client c) {
-		//en entrée  la partie c.numClient vaut null
-		entityManager.persist(c);//INSERT INTO SQL
-		                         //avec auto_increment
-		return c; //en retour c.numClient ne sera plus null
+		try {
+			entityManager.getTransaction().begin();
+				//en entrée  la partie c.numClient vaut null
+				entityManager.persist(c);//INSERT INTO SQL avec auto_increment
+			entityManager.getTransaction().commit();
+			return c; //en retour c.numClient ne sera plus null
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
-	@Override
 	public Client rechercherClientParNumero(Long numero) {
 		//SELECT FROM ... WHERE numero=?
 		return entityManager.find(Client.class, numero);
 	}
 
-	@Override
 	public List<Client> rechercherClients() {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("SELECT c FROM Client c",Client.class)
+				            .getResultList();
 	}
 
-	@Override
 	public void mettreAjourClient(Client p) {
-		entityManager.merge(p); //UDPATE SQL
-
+		try {
+			entityManager.getTransaction().begin();
+				entityManager.merge(p); //UDPATE SQL
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
-	@Override
 	public void supprimerClient(Long numero) {
-		// TODO Auto-generated method stub
-
+		 try {
+			 entityManager.getTransaction().begin();
+				 Client c= entityManager.find(Client.class, numero);
+				 entityManager.remove(c); //DELETE SQL
+			 entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 }
