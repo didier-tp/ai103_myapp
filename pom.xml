@@ -12,6 +12,7 @@
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
      <!-- penser aussi à régler UTF8 dans eclipe (windows/preferences/general/workspace) -->
   </properties>
+  <!-- version 1 / sans jboss , avec tomcat -->
   
   <modules>
   	<module>myappWeb</module>
