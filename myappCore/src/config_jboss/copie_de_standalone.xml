@@ -158,10 +158,25 @@
                         <password></password>
                     </security>
                 </datasource>
+				<datasource jndi-name="java:jboss/datasources/BankDsMysql" pool-name="BankDsMysql" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:mysql://localhost/bank_db</connection-url>
+					<!-- nb: la base bank_db doit exister au niveau du serveur mysql -->
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>root</user-name>
+                        <password>root</password>
+                    </security>
+                </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
                     </driver>
+					<driver name="mysql" module="com.mysql">
+						<driver-class>com.mysql.jdbc.Driver</driver-class>
+						<xa-datasource-class>
+								com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+						</xa-datasource-class>
+					</driver>
                 </drivers>
             </datasources>
         </subsystem>
