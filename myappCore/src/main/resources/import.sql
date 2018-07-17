@@ -7,3 +7,8 @@ INSERT INTO Client(numClient,prenom,nom,email,adresse,telephone,password) VALUES
 
 INSERT INTO Compte(numCompte,label,solde) VALUES (1,'compte courant 1', 500.1) 
 INSERT INTO Compte(numCompte,label,solde) VALUES (2,'compte epargne 2', 300.6) 
+
+INSERT INTO Operation(numero,dateOp,montant,label,numCpt) VALUES (1,'2018-07-17', -15.5 , 'achat 1' , 1 )
+INSERT INTO Operation(numero,dateOp,montant,label,numCpt) VALUES (2,'2018-07-7', -5.5 , 'achat 2' , 1 )
+INSERT INTO Operation(numero,dateOp,montant,label,numCpt) VALUES (3,'2018-07-17', -8.5 , 'achat 3' , 2 )
+INSERT INTO Operation(numero,dateOp,montant,label,numCpt) VALUES (4,'2018-07-12', -4.5 , 'achat 4' , 2 )

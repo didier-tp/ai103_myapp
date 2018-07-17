@@ -2,10 +2,13 @@ package fr.afcepf.ai103.data;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,11 +19,16 @@ public class Operation {
 	private Long numero;
 	
 	@Temporal(TemporalType.DATE) //seule la date est significative pas l'heure
+	@Column(name="dateOp")
     private Date date;
 	
     private Double montant;
     
     private String label;
+    
+    @ManyToOne //Many Operation To One Compte
+    @JoinColumn(name="numCpt") //nom de la clef etrangère dans table Operation
+    private Compte compte; //avec get/set mais pas dans toString()
     
    
 	public Operation() {
@@ -60,6 +68,15 @@ public class Operation {
 	public void setLabel(String label) {
 		this.label = label;
 	}
+
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
     
+	
     
 }
