@@ -1,13 +1,11 @@
 package fr.afcepf.ai103.web;
 
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ActionListener;
 import javax.faces.event.ComponentSystemEvent;
 
 import fr.afcepf.ai103.data.Compte;
@@ -20,7 +18,9 @@ public class CompteBean {
 	
 	private Long numClient = null;
 	
-	private ServiceCompte serviceCompte = new ServiceCompte();
+	@EJB //@EJB demande au serveur d'initialiser la variable serviceCompte
+	//pour référencer un EJB existant compatible avec l'interface ou la classe
+	private ServiceCompte serviceCompte ; //jamais de new ClasseDeEJB , c'est jboss qui le fait
 	
 	//avec get/set
 	private Long numCptDeb = null;  //à selectionner dans liste déroulante dans virement.xhtml

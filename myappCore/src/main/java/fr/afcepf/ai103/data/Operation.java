@@ -2,10 +2,24 @@ package fr.afcepf.ai103.data;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class Operation {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long numero;
+	
+	@Temporal(TemporalType.DATE) //seule la date est significative pas l'heure
     private Date date;
+	
     private Double montant;
+    
     private String label;
     
    

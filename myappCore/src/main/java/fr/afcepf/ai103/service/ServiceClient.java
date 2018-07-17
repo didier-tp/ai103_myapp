@@ -9,6 +9,8 @@ import fr.afcepf.ai103.data.Client;
 
 @Stateless //EJB session sans état (98% des EJBs de traitement)
 @Local //ou @Remote
+//@TransactionManagement(TransactionManagementType.CONTAINER) par defaut
+//@TransactionAttribute(TransactionAttributeType.REQUIRED) par defaut
 public class ServiceClient implements IServiceClient {
      
 	@EJB

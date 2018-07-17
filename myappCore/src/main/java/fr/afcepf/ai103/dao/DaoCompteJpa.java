@@ -4,22 +4,16 @@ import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
-import fr.afcepf.ai103.data.Client;
+import fr.afcepf.ai103.data.Compte;
 
 @Stateless
 @Local
 //@TransactionManagement(TransactionManagementType.CONTAINER) par defaut
 //@TransactionAttribute(TransactionAttributeType.REQUIRED) par defaut
-public class DaoClientJpa implements IDaoClient {
+public class DaoCompteJpa implements IDaoCompte {
 	
 	//myappCore est un nom logique d'une partie de la 
 	//configuration de META-INF/persistence.xml
@@ -29,32 +23,32 @@ public class DaoClientJpa implements IDaoClient {
 	private EntityManager entityManager;
 	
 	
-	public DaoClientJpa(){
+	public DaoCompteJpa(){
 		
 	}
 
 	//commit/rollback declenché automatiquement par container EJB selon exception
-	public Client insererNouveauClient(Client c) {
+	public Compte insererNouveauCompte(Compte c) {
 			entityManager.persist(c);//INSERT INTO SQL avec auto_increment
-			return c; //en retour c.numClient ne sera plus null
+			return c; //en retour c.numCompte ne sera plus null
 	}
 
-	public Client rechercherClientParNumero(Long numero) {
+	public Compte rechercherCompteParNumero(Long numero) {
 		//SELECT FROM ... WHERE numero=?
-		return entityManager.find(Client.class, numero);
+		return entityManager.find(Compte.class, numero);
 	}
 
-	public List<Client> rechercherClients() {
-		return entityManager.createQuery("SELECT c FROM Client c",Client.class)
+	public List<Compte> rechercherComptes() {
+		return entityManager.createQuery("SELECT c FROM Compte c",Compte.class)
 				            .getResultList();
 	}
 
-	public void mettreAjourClient(Client p) {
+	public void mettreAjourCompte(Compte p) {
 				entityManager.merge(p); //UDPATE SQL
 	}
 
-	public void supprimerClient(Long numero) {
-				 Client c= entityManager.find(Client.class, numero);
+	public void supprimerCompte(Long numero) {
+				 Compte c= entityManager.find(Compte.class, numero);
 				 entityManager.remove(c); //DELETE SQL
 	}
 
