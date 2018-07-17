@@ -159,7 +159,7 @@
                     </security>
                 </datasource>
 				<datasource jndi-name="java:jboss/datasources/BankDsMysql" pool-name="BankDsMysql" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:mysql://localhost/bank_db</connection-url>
+                    <connection-url>jdbc:mysql://localhost/bank_db?serverTimezone=UTC</connection-url>
 					<!-- nb: la base bank_db doit exister au niveau du serveur mysql -->
                     <driver>mysql</driver>
                     <security>
