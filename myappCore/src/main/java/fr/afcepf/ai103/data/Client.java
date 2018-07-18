@@ -1,14 +1,23 @@
 package fr.afcepf.ai103.data;
 
+import java.util.List;
+
 import javax.persistence.Column;
 /* javax.persistence = package de JPA */
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 
 @Entity //entité persistante prise en charge par JPA/Hibernate
 //@Table(name="Client")
+@NamedQuery(name="Client.comptesDuClient", 
+            query="SELECT cpt FROM Client cli INNER JOIN cli.comptes cpt WHERE cli.numClient = :numClient") 
 public class Client {
 	
 	@Id //identifiant (primary key)
@@ -16,6 +25,13 @@ public class Client {
 	                                                  //pour les bases de données récentes
 	//@Column(name="numClient")
 	private Long numClient;
+	
+
+    @ManyToMany( fetch = FetchType.LAZY)
+    @JoinTable(name = "Client_Compte",
+    		    joinColumns = {@JoinColumn(name = "client_id")},
+    			inverseJoinColumns = {@JoinColumn(name = "compte_id")})
+    private List<Compte> comptes; //+get/set
 	
 	private String nom; 
 	private String prenom; 
@@ -27,6 +43,7 @@ public class Client {
 	
     private String password;
     
+   
     
     
     //+get/set , +toString() , + default constructor
@@ -84,6 +101,14 @@ public class Client {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(List<Compte> comptes) {
+		this.comptes = comptes;
 	}
     
    
