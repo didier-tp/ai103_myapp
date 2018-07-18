@@ -37,8 +37,8 @@ public class ServiceCompte {
     		 throw new EJBException("solde insuffisant sur le compte à débiter");
     	 /*else*/
     	 cptDeb.setSolde(cptDeb.getSolde() - montant);
-    	//pas absolument besoin d'appeler  daoCompte.mettreAjourCompte(cptCred);
-    	//car cptCred est ici à l'état persistant (pas détaché)
+    	//pas absolument besoin d'appeler  daoCompte.mettreAjourCompte(cptDeb);
+    	//car cptDeb est ici à l'état persistant (pas détaché)
      }
 	
      

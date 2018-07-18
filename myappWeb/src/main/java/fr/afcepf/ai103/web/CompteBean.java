@@ -53,12 +53,19 @@ public class CompteBean {
 	
 	public String effectuerVirement() {
 		String suite = null;
-		//effectuer le virement
-		serviceCompte.transferer(montant, numCptDeb, numCptCred);
-		//recharger en mémoire les nouveaux soldes qui ont évolués et qui seront ré-afficher
-		comptes = serviceCompte.comptesDuClient(numClient);
+		try {
+			//effectuer le virement
+			serviceCompte.transferer(montant, numCptDeb, numCptCred);
+			//recharger en mémoire les nouveaux soldes qui ont évolués et qui seront ré-afficher
+			comptes = serviceCompte.comptesDuClient(numClient);
+		} catch (Exception e) {
+			System.err.println("echec transfert: " + e.getMessage());
+			//+  idéalement générer ligne de log 
+			//+ idéalement affichage du message via jsf 
+		}
 		//demander à naviguer vers comptes.xhtml pour réafficher les nouveaux soldes:
-		suite = "comptes" ; //.xhtml 
+		//suite = "comptes" ; //.xhtml 
+		suite = "comptes?faces-redirect=true&amp;numClient="+this.numClient;
 		return suite;
 	}
 
