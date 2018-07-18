@@ -3,6 +3,7 @@ package fr.afcepf.ai103.dao;
 import java.util.List;
 
 import fr.afcepf.ai103.data.Compte;
+import fr.afcepf.ai103.data.Operation;
 
 /*
  * DAO = Data Access Object 
@@ -18,4 +19,6 @@ public interface IDaoCompte {
     
     public void mettreAjourCompte(Compte p);
     public void supprimerCompte(Long numero);
+
+	public List<Operation> dernieresOperations(Long numCompte);
 }

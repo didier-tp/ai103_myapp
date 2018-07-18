@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class Compte {
 	private Double solde;
 	
 	//One Compte To Many Operation
-	@OneToMany(mappedBy="compte") //mappedBy="nomJava_RelationInverse_ManyToOne"
+	@OneToMany(mappedBy="compte", fetch=FetchType.LAZY) //mappedBy="nomJava_RelationInverse_ManyToOne"
 	private List<Operation> dernieresOperations;//avec get/set mais pas dans toString()
 	
 	

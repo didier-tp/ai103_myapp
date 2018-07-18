@@ -47,6 +47,9 @@ public class CompteBean {
 	//méthode appelée après que numClient soit automatiquement mis à jour par JSF
 	public void initComptes(ComponentSystemEvent event){
 		comptes = serviceCompte.comptesDuClient(numClient);
+		
+		//test temporaire:
+		this.operations = serviceCompte.operationsDuCompte(1L);
 	}
 	
 	public String effectuerVirement() {

@@ -9,10 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQuery(name="Operation.findByNumCompte" ,
+            query= "SELECT o FROM Operation o WHERE o.compte.numero = :numCpt")
 public class Operation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,8 +29,8 @@ public class Operation {
     
     private String label;
     
-    @ManyToOne //Many Operation To One Compte
-    @JoinColumn(name="numCpt") //nom de la clef etrangère dans table Operation
+    @ManyToOne() //Many Operation To One Compte
+    @JoinColumn(name="numCpt"  ) //nom de la clef etrangère dans table Operation
     private Compte compte; //avec get/set mais pas dans toString()
     
    

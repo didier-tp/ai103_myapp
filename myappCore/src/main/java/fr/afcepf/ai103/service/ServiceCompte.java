@@ -35,12 +35,32 @@ public class ServiceCompte {
     	 listeComptes.add(daoCompte.rechercherCompteParNumero(2L));
     	 return listeComptes;
      }
+     /*
+     VARIANTE 1 exploitant le lien "@OneToMany"
      
+     //lorsque cette méthode sera exécutée dans jboss, il faudra que jboss initialise un 
+     //debut de transaction. Et pour ça le "entityManager" doit quelquefois être créé au même moment
      public List<Operation> operationsDuCompte(Long numCompte){
     	 Compte cpt = daoCompte.rechercherCompteParNumero(numCompte);
-    	 cpt.getDernieresOperations().size(); //temporaire pour eviter lazy exception
+    	 //for(Operation op : cpt.getDernieresOperations()) { }
+    	 int n = cpt.getDernieresOperations().size(); //temporaire pour eviter lazy exception
+    	 //Soit via une boucle for , soit via un appel à .size() on provoque volontairement
+    	 //une remontée immédiate des valeurs de la tables "operation" vers des objets
+    	 //de la liste dernieresOperations avant qu'il ne soit trop tard pour le faire
+    	 System.out.println("le compte " + numCompte + " a " + n + " operations");
     	 return cpt.getDernieresOperations();
+     //à la fin de l'exécution de cette méthode jboss déclenche automatiquement commit 
+     // tout va bien ou rollback si exception
+     // et quelquefois le entityManager est fermé ici (si avait été crée dans le haut de cette méthode)
      }
+     */
+     
+     // VARIANTE 2 s'appyant sur une requête spécifique du DAO:
+     public List<Operation> operationsDuCompte(Long numCompte){
+        return daoCompte.dernieresOperations(numCompte);
+     }
+     
+     
      
      
 }
