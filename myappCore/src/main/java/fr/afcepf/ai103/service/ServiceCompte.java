@@ -34,7 +34,7 @@ public class ServiceCompte {
     	 //car cptCred est ici à l'état persistant (pas détaché)
     	 Compte cptDeb = daoCompte.rechercherCompteParNumero(numCptDeb);
     	 if(cptDeb.getSolde() < montant)
-    		 throw new EJBException("soldeInsuffisant sur le compte à débiter");
+    		 throw new EJBException("solde insuffisant sur le compte à débiter");
     	 /*else*/
     	 cptDeb.setSolde(cptDeb.getSolde() - montant);
     	//pas absolument besoin d'appeler  daoCompte.mettreAjourCompte(cptCred);
