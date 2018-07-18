@@ -65,7 +65,8 @@ public class CompteBean {
 		}
 		//demander à naviguer vers comptes.xhtml pour réafficher les nouveaux soldes:
 		//suite = "comptes" ; //.xhtml 
-		suite = "comptes?faces-redirect=true&amp;numClient="+this.numClient; //pour redirection en mode get avec ajax qui fonctionne bien
+		suite = "comptes?faces-redirect=true&amp;numClient="+this.numClient; //pour redirection en mode get 
+		                                                                    //avec ajax qui fonctionne bien
 		return suite;
 	}
 
