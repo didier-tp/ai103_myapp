@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/common.xhtml">
 	<ui:define name="title">comptes</ui:define>
@@ -27,12 +28,11 @@
 	  <h:dataTable var="cpt" value="#{compteBean.comptes}" border="1">
 	      <h:column>
 	           <f:facet name="header"><f:verbatim>numero</f:verbatim></f:facet>
-	           <h:commandLink action="#{compteBean.onSelectCompteAction}">
+	           <p:commandLink update="idPanelGroupComportantTabOp" >
 	                <f:setPropertyActionListener value="#{cpt.numero}"
 								target="#{compteBean.selectedNumCompte}" />
-					 <f:ajax event="click" render="idPanelGroupComportantTabOp" /> 
 	                <h:outputText value="#{cpt.numero}"/>
-	           </h:commandLink>
+	           </p:commandLink>
 	      </h:column>
 	      <h:column>
 	           <f:facet name="header"><f:verbatim>label</f:verbatim></f:facet>

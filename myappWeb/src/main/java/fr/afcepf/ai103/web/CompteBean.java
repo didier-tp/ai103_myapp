@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
 
 import fr.afcepf.ai103.data.Compte;
@@ -33,11 +34,6 @@ public class CompteBean {
 	private Long selectedNumCompte = null; //+get/set
 	
 	
-	public String onSelectCompteAction() {
-		System.out.println("dans onSelectCompteAction() , selectedNumCompte= " + selectedNumCompte);
-		operations = serviceCompte.operationsDuCompte(selectedNumCompte);
-		return null;
-	}
 	
 	//constructeur par défaut:
 	public CompteBean() {
@@ -48,8 +44,11 @@ public class CompteBean {
 	public void initComptes(ComponentSystemEvent event){
 		comptes = serviceCompte.comptesDuClient(numClient);
 		
-		//test temporaire:
-		this.operations = serviceCompte.operationsDuCompte(1L);
+		System.out.println("dans initComptes() , selectedNumCompte= " + selectedNumCompte);
+		
+		if(this.selectedNumCompte != null) { 
+		   this.operations = serviceCompte.operationsDuCompte(selectedNumCompte);
+		}
 	}
 	
 	public String effectuerVirement() {
