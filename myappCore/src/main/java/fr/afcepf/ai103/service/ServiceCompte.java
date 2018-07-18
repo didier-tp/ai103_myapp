@@ -1,9 +1,9 @@
 package fr.afcepf.ai103.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
@@ -25,11 +25,20 @@ public class ServiceCompte {
     	 return daoClient.comptesPourClient(numClient);
      }
 	 
+	 //NB: l'execution de la méthode transferer() 
+	 //se fera automatiquement en mode transactionnel (tout ou rien)
      public void transferer(double montant,long numCptDeb,long numCptCred) {
-    	 Compte cptDeb = daoCompte.rechercherCompteParNumero(numCptDeb);
-    	 cptDeb.setSolde(cptDeb.getSolde() - montant);
     	 Compte cptCred = daoCompte.rechercherCompteParNumero(numCptCred);
     	 cptCred.setSolde(cptCred.getSolde() + montant);
+    	 //pas absolument besoin d'appeler  daoCompte.mettreAjourCompte(cptCred);
+    	 //car cptCred est ici à l'état persistant (pas détaché)
+    	 Compte cptDeb = daoCompte.rechercherCompteParNumero(numCptDeb);
+    	 if(cptDeb.getSolde() < montant)
+    		 throw new EJBException("soldeInsuffisant sur le compte à débiter");
+    	 /*else*/
+    	 cptDeb.setSolde(cptDeb.getSolde() - montant);
+    	//pas absolument besoin d'appeler  daoCompte.mettreAjourCompte(cptCred);
+    	//car cptCred est ici à l'état persistant (pas détaché)
      }
 	
      
