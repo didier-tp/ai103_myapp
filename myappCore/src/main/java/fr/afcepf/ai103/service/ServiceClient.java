@@ -38,6 +38,16 @@ public class ServiceClient implements IServiceClient {
 	public List<Client> rechercherListeClientsParNom(String nom) {
 		return daoClient.rechercherClientsParNom(nom);
 	}
+
+	@Override
+	public Client saveOrUpdateClient(Client cli) {
+		if(cli.getNumClient()==null) {
+			cli = daoClient.insererNouveauClient(cli); //entityManager.persist() , INSERT INTO
+		}else {
+			daoClient.mettreAjourClient(cli);//entityManager.merge() ,UPDATE SQL
+		}
+		return cli;
+	}
      
      //....
 }
