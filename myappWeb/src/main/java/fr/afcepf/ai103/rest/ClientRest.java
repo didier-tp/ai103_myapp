@@ -3,7 +3,9 @@ package fr.afcepf.ai103.rest;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -32,6 +34,22 @@ public class ClientRest {
 		return serviceClient.rechercherInfosClient(numClient);
 	}
 	
+	/* DEVINETTE : 
+	 Soap et Rest sont sur un bateau. Soap glisse sur un savon et tombe à l'eau.
+	 Qui est qui rest ?
+	*/
+	
+	@Path("") //dernière partie de l'URL (éventuellement vide si rien de plus)
+	@POST // POST pour "ajout" ou "modif" , 
+	//URL = http://localhost:8080/myappWeb/services/rest/client
+	//avec en entree { "prenom": "jean" , "nom" : "Bon" , ...}
+	@Consumes("application/json")
+	public Client postClient(Client cli) {
+		//en entree cli.numClient est quelquefois à null (ou pas renseigné)
+		cli =  serviceClient.saveOrUpdateClient(cli);
+		//en retour cli.numClient est quelquefois auto incrémenté
+		return cli;
+	}
 	
 	@Path("") //dernière partie de l'URL (éventuellement vide si rien de plus)
 	@GET // GET pour lecture , recherche multiple via critère(s) de recherche
@@ -39,5 +57,7 @@ public class ClientRest {
 	public List<Client> rechercherClients(@QueryParam("nom")String nom) {
 		return serviceClient.rechercherListeClientsParNom(nom);
 	}
+	
+	
 	
 }
