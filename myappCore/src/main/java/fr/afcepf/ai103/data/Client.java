@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity //entité persistante prise en charge par JPA/Hibernate
 //@Table(name="Client")
 @NamedQueries({
@@ -28,18 +30,19 @@ import javax.persistence.NamedQuery;
 //car JPA/Hibernate analyse toutes les structures java et connait les valeurs du ON ...=....
 // cpt est un alias pour un élément de cli.comptes
 public class Client {
-	
 	@Id //identifiant (primary key)
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //IDENTITY convient le mieux
 	                                                  //pour les bases de données récentes
 	//@Column(name="numClient")
 	private Long numClient;
-	
 
     @ManyToMany( fetch = FetchType.LAZY)
     @JoinTable(name = "Client_Compte",
     		    joinColumns = {@JoinColumn(name = "client_id")},
     			inverseJoinColumns = {@JoinColumn(name = "compte_id")})
+    @JsonIgnore //pour que les comptes problématiques en mode LAZY
+                //ne soient pas pris en compte lors de la conversion JAVA vers JSON
+                //déclenchée par la technologie jackson elle même utilisée par JAX-RS
     private List<Compte> comptes; //+get/set
 	
 	private String nom; 

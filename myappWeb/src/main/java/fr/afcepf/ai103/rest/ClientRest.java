@@ -2,7 +2,7 @@ package fr.afcepf.ai103.rest;
 
 import java.util.List;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -20,7 +20,9 @@ import fr.afcepf.ai103.service.IServiceClient;
 @Produces("application/json") //pour convertir automatiquement réponse java en réponse json
 public class ClientRest {
     
-	@EJB //ou @Inject
+	//@EJB ne fonctionne pas ici , il faut utiliser  @Inject (plus moderne de CDI) à la place
+	@Inject //@Inject de l'api CDI (Container Dependency Injection) ne fonctionne que si
+	        //le fichier WEB-INF/beans.xml est présent dans l'application.
 	private IServiceClient serviceClient; 
 	
 	@Path("/{idClient}") //dernière partie de l'URL
