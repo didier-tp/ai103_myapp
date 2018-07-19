@@ -34,12 +34,7 @@ public class DaoClientJpa implements IDaoClient {
 		
 	}
 	
-	@Override
-	public List<Compte> comptesPourClient(Long numClient) {
-		return entityManager.createNamedQuery("Client.comptesDuClient", Compte.class)
-				            .setParameter("numClient", numClient)
-				            .getResultList();
-	}
+	
 
 	//commit/rollback declenché automatiquement par container EJB selon exception
 	public Client insererNouveauClient(Client c) {
@@ -64,6 +59,20 @@ public class DaoClientJpa implements IDaoClient {
 	public void supprimerClient(Long numero) {
 				 Client c= entityManager.find(Client.class, numero);
 				 entityManager.remove(c); //DELETE SQL
+	}
+	
+	@Override
+	public List<Compte> comptesPourClient(Long numClient) {
+		return entityManager.createNamedQuery("Client.comptesDuClient", Compte.class)
+				            .setParameter("numClient", numClient)
+				            .getResultList();
+	}
+
+	@Override
+	public List<Client> rechercherClientsParNom(String nom) {
+		return entityManager.createNamedQuery("Client.parNom", Client.class)
+	            .setParameter("nom", nom)
+	            .getResultList();
 	}
 
 	

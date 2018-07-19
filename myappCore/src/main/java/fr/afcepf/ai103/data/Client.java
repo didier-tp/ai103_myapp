@@ -12,13 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity //entité persistante prise en charge par JPA/Hibernate
 //@Table(name="Client")
-@NamedQuery(name="Client.comptesDuClient", 
-            query="SELECT cpt FROM Client cli INNER JOIN cli.comptes cpt WHERE cli.numClient = :numClient")
-
+@NamedQueries({
+  @NamedQuery(name="Client.comptesDuClient", 
+            query="SELECT cpt FROM Client cli INNER JOIN cli.comptes cpt WHERE cli.numClient = :numClient"
+            ),
+  @NamedQuery(name="Client.parNom", 
+            query="SELECT cli FROM Client cli  WHERE cli.nom = :nom")
+})
 //pas besoin de ON ....=.... apres INNER JOIN cli.comptes cpt 
 //car JPA/Hibernate analyse toutes les structures java et connait les valeurs du ON ...=....
 // cpt est un alias pour un élément de cli.comptes

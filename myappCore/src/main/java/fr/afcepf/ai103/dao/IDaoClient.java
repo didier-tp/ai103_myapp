@@ -21,4 +21,6 @@ public interface IDaoClient {
     public void supprimerClient(Long numero);
 
 	public List<Compte> comptesPourClient(Long numClient);
+
+	public List<Client> rechercherClientsParNom(String nom);
 }

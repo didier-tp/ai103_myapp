@@ -20,7 +20,7 @@ import fr.afcepf.ai103.service.IServiceClient;
 @Produces("application/json") //pour convertir automatiquement réponse java en réponse json
 public class ClientRest {
     
-	@EJB
+	@EJB //ou @Inject
 	private IServiceClient serviceClient; 
 	
 	@Path("/{idClient}") //dernière partie de l'URL
@@ -30,12 +30,12 @@ public class ClientRest {
 		return serviceClient.rechercherInfosClient(numClient);
 	}
 	
-	/*
+	
 	@Path("") //dernière partie de l'URL (éventuellement vide si rien de plus)
 	@GET // GET pour lecture , recherche multiple via critère(s) de recherche
 	//URL = http://localhost:8080/myappWeb/services/rest/client?nom=Therieur
 	public List<Client> rechercherClients(@QueryParam("nom")String nom) {
 		return serviceClient.rechercherListeClientsParNom(nom);
 	}
-	*/
+	
 }

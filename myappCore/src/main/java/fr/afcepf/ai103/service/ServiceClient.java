@@ -1,5 +1,7 @@
 package fr.afcepf.ai103.service;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -31,6 +33,11 @@ public class ServiceClient implements IServiceClient {
     	 return cli;*/
     	 
      }
+
+	@Override
+	public List<Client> rechercherListeClientsParNom(String nom) {
+		return daoClient.rechercherClientsParNom(nom);
+	}
      
      //....
 }
