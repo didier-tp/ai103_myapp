@@ -2,11 +2,14 @@ package fr.afcepf.ai103.web;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.inject.Default;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
 import fr.afcepf.ai103.data.Client;
 import fr.afcepf.ai103.service.IServiceClient;
+import fr.afcepf.ai103.web.verif.IVerificateur;
 
 @ManagedBean /* pour que cette classe java soit prise en charge par le framework JSF2 
                 et pour qu'on puisse accéder à une instance depuis une page .xhtml
@@ -39,10 +42,17 @@ public class ClientBean {
     	//serviceClient.appelMethodeMaintenant() ==> ok !!!
     }
     
+    @Inject // demander à CDI d'initialiser la référence verificateur
+            // pour que ça pointe vers un composant existant compatible avec l'interface IVerificateur
+    @Default
+    //@Secondaire
+    private IVerificateur verificateur;//=null par defaut sans @Inject
+    
     public String verifLogin() {
     	String suite=null; /* si suite reste à null on reste sur même page */
     	//simuler verification du mot de passe:
-    	if(password!=null && password.equals("pwd" + numClient)) {
+    	//if(password!=null && password.equals("pwd" + numClient)) {
+    	if(verificateur.isPasswordOk(numClient, password)) {
     		//mot de passe considéré comme ok si "pwd" + numClient (ex: "pwd1" )
     		this.client  =  serviceClient.rechercherInfosClient(numClient);
     		message="";
