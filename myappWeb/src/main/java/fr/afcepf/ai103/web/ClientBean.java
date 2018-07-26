@@ -45,7 +45,7 @@ public class ClientBean {
     @Inject // demander à CDI d'initialiser la référence verificateur
             // pour que ça pointe vers un composant existant compatible avec l'interface IVerificateur
     @Default
-    //@Secondaire
+    //@Default ou bien @Alternative ou bien @Secondaire pour choisir la version
     private IVerificateur verificateur;//=null par defaut sans @Inject
     
     public String verifLogin() {
