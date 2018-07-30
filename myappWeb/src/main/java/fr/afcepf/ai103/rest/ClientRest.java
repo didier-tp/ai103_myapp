@@ -2,6 +2,7 @@ package fr.afcepf.ai103.rest;
 
 import java.util.List;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -20,6 +21,7 @@ import fr.afcepf.ai103.service.IServiceClient;
 
 @Path("client") //avant dernière partie de l'URL
 @Produces("application/json") //pour convertir automatiquement réponse java en réponse json
+
 public class ClientRest {
     
 	//@EJB ne fonctionne pas ici , il faut utiliser  @Inject (plus moderne de CDI) à la place
@@ -56,7 +58,12 @@ public class ClientRest {
 	@GET // GET pour lecture , recherche multiple via critère(s) de recherche
 	//URL = http://localhost:8080/myappWeb/services/rest/client?nom=Therieur
 	public List<Client> rechercherClients(@QueryParam("nom")String nom) {
-		return serviceClient.rechercherListeClientsParNom(nom);
+		if(nom!=null) {
+		   return serviceClient.rechercherListeClientsParNom(nom);
+		}else {
+			return serviceClient.rechercherTousLesClients();
+		}
+		
 	}
 	
 	

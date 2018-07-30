@@ -48,6 +48,11 @@ public class ServiceClient implements IServiceClient {
 		}
 		return cli;
 	}
+
+	@Override
+	public List<Client> rechercherTousLesClients() {
+		return daoClient.rechercherClients();
+	}
      
      //....
 }

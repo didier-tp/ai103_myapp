@@ -12,4 +12,6 @@ public interface IServiceClient {
 
 	Client saveOrUpdateClient(Client cli);
 
+	List<Client> rechercherTousLesClients();
+
 }
