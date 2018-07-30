@@ -24,4 +24,13 @@ public class MyRestApplicationConfig extends Application {
 		//classes.add(ServiceRest2.class);
 		return classes;
 	}
+
+	@Override
+	public Set<Object> getSingletons() {
+		final Set<Object> singletons = new HashSet<Object>();
+		singletons.add(new RestCorsFilter());
+		return singletons;
+	}
+	
+	
 }
