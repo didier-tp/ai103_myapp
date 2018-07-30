@@ -10,7 +10,6 @@ function enregistrer(){
 		  
 		  var client = {
 			numClient : null,
-			date : "2018-07-27",
 			nom : nom ,
 			prenom : prenom 
 		  }; //expression "objet lit(t)eral javascript" (très proche du format JSON) .
@@ -20,5 +19,23 @@ function enregistrer(){
 		  client.adresse = document.querySelector("#adresse").value;
 		  client.email = document.querySelector("#email").value;
 	      var clientAsJsonString = JSON.stringify(client);
-          document.querySelector("#spanRes").innerHTML = clientAsJsonString;		  
+	      
+	      var httpRequest = new XMLHttpRequest(); //objet prédéfini du navigateur
+	                  //pour declencher requête Ajax (XHR : XML Http Request)
+
+	      //on enregistre sur httpRequest une fonction anonyme "callback"
+	      //pour traiter la réponse qui va arriver en différé
+	      httpRequest.onreadystatechange = function() {
+	    	  if (this.readyState == 4 && this.status == 200) {
+	    		 //si status HTTP en retour == 200 : OK 
+	    		  document.querySelector("#spanRes").innerHTML = this.responseText; 
+	    	  }
+	      };
+	      //declenchement de la requête:
+	      httpRequest.open("POST", "./services/rest/client");
+	      httpRequest.setRequestHeader("Content-Type" , "application/json");
+	      httpRequest.send(clientAsJsonString);
+	      console.log ("donnees de la requete envoyee : " + clientAsJsonString)	; 
+	      
+          //document.querySelector("#spanRes").innerHTML = clientAsJsonString;		  
 }

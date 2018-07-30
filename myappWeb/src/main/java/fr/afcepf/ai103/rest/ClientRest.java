@@ -45,6 +45,7 @@ public class ClientRest {
 	//avec en entree { "prenom": "jean" , "nom" : "Bon" , ...}
 	@Consumes("application/json")
 	public Client postClient(Client cli) {
+		System.out.println("donnees de la requête recue: " + cli.toString());
 		//en entree cli.numClient est quelquefois à null (ou pas renseigné)
 		cli =  serviceClient.saveOrUpdateClient(cli);
 		//en retour cli.numClient est quelquefois auto incrémenté
