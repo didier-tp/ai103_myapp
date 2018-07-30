@@ -1,9 +1,18 @@
 function initComportementJs(){
 	console.log("initComportementJs");
 	
+	//$('#btnEnregistrer').on('click',enregistrer);
+	//$('#btnListeInscriptions').on('click',recupererListeInscriptions);
+}
+
+$( function() {
+	// ici, le DOM de la page est entièrement défini et peut être manipulé via jQuery
+	console.log("via jquery");
 	$('#btnEnregistrer').on('click',enregistrer);
 	$('#btnListeInscriptions').on('click',recupererListeInscriptions);
-}
+});
+
+
 
 function recupererListeInscriptions(){
 	$.ajax({
