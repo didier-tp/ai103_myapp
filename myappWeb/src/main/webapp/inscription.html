@@ -2,10 +2,19 @@
 <head>
     <title>inscription</title>
     <script src="./resources/js/jquery-3.3.1.min.js" ></script>
-    <script src="./js/s3_via_jquery.js" ></script>
-	<!-- <script src="./js/s3.js" ></script> -->
+    <!-- <script src="./js/s3_via_jquery.js" ></script> -->
+	<script src="./js/s3.js" ></script> 
+	<script src="./js/my-nav.js" ></script>
 </head>
 <body onload="initComportementJs()">
+    <input type="button" id="btnPartieA"  value="sous_partie_a"></input> 
+    <input type="button" id="btnPartieB"  value="sous_partie_b"></input> <br/>
+   Sous page switchable (souvent entre entete et pied de page fixes)<br/>
+   <!-- switch avec $("#divContent").load("./sous_page_xx_ou_yy.html") de jquery -->
+   <div id="divContent">  
+   </div>
+   <hr/>
+   
    <h1>inscription</h1>
    prenom: <input id="prenom" type="text" /> <br/>
    nom: <input id="nom" type="text" /> <br/>
@@ -20,6 +29,6 @@
    
    <input type="button" id="btnListeInscriptions"  value="liste inscriptions"></input>
    <span  id="spanTableau"></span> 
-  
+ 
 </body>
 </html>
