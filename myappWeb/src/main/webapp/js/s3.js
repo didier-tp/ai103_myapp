@@ -7,6 +7,20 @@ function initComportementJs(){
 	btnListeInscriptions.addEventListener("click",recupererListeInscriptions,false);
 }
 
+function afficherDansTable(listeClientAsJsonString){
+	var tabClientJs = JSON.parse(listeClientAsJsonString);
+	var eltTable = document.querySelector("#idTable");
+	var eltTbody = eltTable.getElementsByTagName("tbody").item(0);
+	for(i=0;i<tabClientJs.length;i++){
+		var clientJs = tabClientJs[i];
+		var eltTr = document.createElement("tr");
+		eltTr.innerHTML="<td>" + clientJs.prenom + "</td>"
+		                   + "<td>"+clientJs.nom + "</td>"
+		                   + "<td>...</td>";
+		eltTbody.appendChild(eltTr);
+	}
+}
+
 function recupererListeInscriptions(){
 	var httpRequest = new XMLHttpRequest(); //objet prédéfini du navigateur
     //pour declencher requête Ajax (XHR : XML Http Request)
@@ -17,6 +31,7 @@ function recupererListeInscriptions(){
 		if (this.readyState == 4 && this.status == 200) {
 		//si status HTTP en retour == 200 : OK 
 		document.querySelector("#spanTableau").innerHTML = this.responseText; 
+		afficherDansTable(this.responseText);
 		}
 	};
 	//declenchement de la requête:
@@ -26,6 +41,7 @@ function recupererListeInscriptions(){
 
 function enregistrer(){
 		  var nom =  document.querySelector("#nom").value; 
+		             //document.getElementById("nom").value; 
 		  var prenom =   document.querySelector("#prenom").value;  
 		  
 		  var client = {

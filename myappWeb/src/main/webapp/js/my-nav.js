@@ -9,6 +9,6 @@ $( function() {
 	$('#btnPartieB').on('click',function(){
 		$("#divContent").load("./sous_page_b.html");
 	  }
-	);
+	);//fin de on-click
 	
 });
