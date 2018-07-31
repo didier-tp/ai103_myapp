@@ -5,6 +5,11 @@
     <!-- <script src="./js/s3_via_jquery.js" ></script> -->
 	<script src="./js/s3.js" ></script> 
 	<script src="./js/my-nav.js" ></script>
+	<script src="./js/handlebars.min-v4.0.11.js" ></script>
+	<script id="template-dans-tr" type="text/x-handlebars-template">
+      <td>{{numClient}}</td> <td>{{prenom}}</td> <td>{{nom}}</td> 
+      <td>{{email}}</td> <td>{{telephone}}</td> <td>{{adresse}}</td>
+	</script>
 </head>
 <body onload="initComportementJs()">
     <input type="button" id="btnPartieA"  value="sous_partie_a"></input> 
@@ -31,11 +36,12 @@
    <span  id="spanTableau"></span> 
    <table id="idTable" border="1">
       <thead>
-           <tr><th>prenom</th><th>nom</th><th>...</th></tr>
+           <tr><th>numClient</th><th>prenom</th><th>nom</th><th>email</th><th>telephone</th><th>adresse</th></tr>
       </thead>
       <tbody>
            <!-- <tr><td>jean</td><td>Bon</td><td>...</td></tr> -->
       </tbody>
    </table> 
+   
 </body>
 </html>

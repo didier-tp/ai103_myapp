@@ -11,12 +11,24 @@ function afficherDansTable(listeClientAsJsonString){
 	var tabClientJs = JSON.parse(listeClientAsJsonString);
 	var eltTable = document.querySelector("#idTable");
 	var eltTbody = eltTable.getElementsByTagName("tbody").item(0);
+	var nbLignes = eltTbody.getElementsByTagName("tr").length;
+	for(i=0;i<nbLignes;i++){
+	  eltTable.deleteRow(-1/* -1 ou numLigne */); //supprime la dernière ligne du tableau si -1
+	}
+	
+	//initialisation "Handlebars"
+	var sourceTemplateDansTr   = document.getElementById("template-dans-tr").innerHTML;
+	var templateHandlebarsDansTr = Handlebars.compile(sourceTemplateDansTr);
+	
 	for(i=0;i<tabClientJs.length;i++){
 		var clientJs = tabClientJs[i];
 		var eltTr = document.createElement("tr");
+		/*
 		eltTr.innerHTML="<td>" + clientJs.prenom + "</td>"
 		                   + "<td>"+clientJs.nom + "</td>"
-		                   + "<td>...</td>";
+		                   + "<td>...</td>";*/
+		var htmlDansTr    = templateHandlebarsDansTr(clientJs);
+		eltTr.innerHTML = htmlDansTr;
 		eltTbody.appendChild(eltTr);
 	}
 }
@@ -30,7 +42,7 @@ function recupererListeInscriptions(){
 	httpRequest.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 		//si status HTTP en retour == 200 : OK 
-		document.querySelector("#spanTableau").innerHTML = this.responseText; 
+		//document.querySelector("#spanTableau").innerHTML = this.responseText; 
 		afficherDansTable(this.responseText);
 		}
 	};
